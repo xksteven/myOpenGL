@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdio.h>
 
+// View* SetupView(GLFWwindow *window);
 void SetupView(GLFWwindow *window);
 bool NeedtoRedraw();
 void SetViewport (GLFWwindow *window);

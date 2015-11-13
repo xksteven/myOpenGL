@@ -13,6 +13,7 @@
 
 #include "WindowCallbacks.hpp"
 #include "shader.hpp"
+// #include "View.hpp"
 
 int main(int argc, char** argv)
 {
@@ -42,7 +43,10 @@ int main(int argc, char** argv)
 
     glfwMakeContextCurrent(window);
     SetViewport (window);
-    SetupView(window);
+
+    //not caused seg fault so I might be able to keep view in
+    // callback class
+    // View *view = SetupView(window);
 
 
     // Initialize GLEW
@@ -63,8 +67,13 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    // Create and compile our GLSL program from the shaders
-    GLuint programID = LoadShaders( "SimpleVertexShader.vsh", "SimpleFragmentShader.fsh", NULL );
+    // The ordering of when create shaders is called is important
+    // Must be called after glewInit()
+    SetupView(window);
+
+
+    // // Create and compile our GLSL program from the shaders
+    // GLuint programID = LoadShaders( "SimpleVertexShader.vsh", "SimpleFragmentShader.fsh", NULL );
 
 
 
@@ -82,8 +91,8 @@ int main(int argc, char** argv)
             Display (window);
         }
 
-        // Use our shader
-        glUseProgram(programID);
+        // // Use our shader
+        // glUseProgram(programID);
 
         // Swap buffers
         // glfwSwapBuffers(window);

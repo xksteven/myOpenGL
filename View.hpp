@@ -8,6 +8,8 @@
 #include <glm/glm.hpp> //matrix and vec library
 #include <glm/gtx/transform.hpp> // after <glm/glm.hpp>
 #include "shader.hpp"
+#include <iostream>
+#include <stdio.h>
 
 class View {
 	public:
@@ -27,6 +29,17 @@ class View {
 	    glm::vec3	camAt;		//!< camera look-at point in world space
 	    glm::vec3	camUp;	
 	    float angle;
+
+
+	    //All of this will be moved into the renderer class *********
+ 
+    	GLuint  modelViewMatID, colorID, projMatID;
+	    GLuint programID;
+	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
+
+	    //End of All of this will be moved into the renderer class *********
+
+
 
 	  //! \brief bind the framebuffer back to the screen. 
 	   // void BindFrameBuffer(); 

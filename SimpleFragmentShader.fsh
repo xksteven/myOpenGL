@@ -1,13 +1,13 @@
-//Simple Fragment Shader
 #version 330 core
 
+uniform vec4 vertColor;
 // Ouput data
-out vec3 color;
+out vec4 color;
 
 void main()
 {
 
 	// Output color = red 
-	color = vec3(1,0,0);
+	color = vertColor;
 
 }

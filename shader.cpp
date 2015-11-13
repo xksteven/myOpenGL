@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-//#include <algorithm>
+#include <algorithm>
 using namespace std;
 
 #include <stdlib.h>
@@ -13,11 +13,14 @@ using namespace std;
 
 #include "shader.hpp"
 
-GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path, const char * geometry_file_path){
+GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path, const char * geometry_file_path)
+{
+
 
 	// Create the shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+
 
 	// Read the Vertex Shader code from the file
 	std::string VertexShaderCode;
@@ -32,6 +35,8 @@ GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path
 		getchar();
 		return 0;
 	}
+
+
 
 	// Read the Fragment Shader code from the file
 	std::string FragmentShaderCode;

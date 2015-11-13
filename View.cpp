@@ -47,6 +47,8 @@ View::View (GLFWwindow *window, int windowWidth, int windowHeight)
 }
 
 
+
+//All of this will be moved into a renderer class ********
 static void RenderSceneCB()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -87,8 +89,37 @@ static void CreateVertexBuffer()
 
 void View::InitRenderers ()
 {
+    //All of this will be moved into a renderer class
+
+    printf("Hey\n");
+
+    // check OpenGL error
+    GLenum err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        std::cerr << "OpenGL error: " << err << std::endl;
+    }
+    // Create and compile our GLSL program from the shaders
+    this->programID = LoadShaders( "SimpleVertexShader.vsh", "SimpleFragmentShader.fsh", NULL );
+
+
+    // Get a handle for our "MVP" uniform
+    this->modelViewMatID = glGetUniformLocation(programID, "modelViewMat");
+
+
+    // Get a handle for our "MVP" uniform
+    this->projMatID = glGetUniformLocation(programID, "projMat");
+
+
+    // Get a handle for our "MVP" uniform
+    this->colorID = glGetUniformLocation(programID, "vertColor");
+
+    printf("Please work?\n");
 
 }
+//End of all of this will be moved into a renderer class ********
+
+
+
 
 /*! \brief initialize the projection matrix based on the current camera state. */
 void View::InitProjMatrix ()
@@ -107,14 +138,29 @@ void View::InitModelViewMatrix ()
     this->camPos,
     this->camAt,
     this->camUp);
+    for (int i = 0; i < 4; ++i)
+    {
+        printf("modelViewMat %f\n", this->modelViewMat[i][i]);
+    }
 }
 
+
+//All of this will be moved into a renderer class ********
 void View::Render ()
 {
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
     // Clear the screen
     glClear( GL_COLOR_BUFFER_BIT );  
     
+    // Use our shader
+    glUseProgram(this->programID);
+
+
+    glUniformMatrix4fv(this->modelViewMatID, 1, GL_FALSE, &this->modelViewMat[0][0]);
+    glUniformMatrix4fv(this->projMatID, 1, GL_FALSE, &this->projectionMat[0][0]);
+    glUniform4fv(this->colorID, 1, &this->color[0]);
+
+
     CreateVertexBuffer();
     RenderSceneCB();
 

@@ -13,6 +13,6 @@ void main()
 
     // gl_Position.xyz = vertexPosition_modelspace;
     // gl_Position.w = 1.0;
-	gl_Position =  modelViewMat * projMat * vec4(vertexPosition_modelspace,1);
+	gl_Position =  projMat * modelViewMat * vec4(vertexPosition_modelspace,1);
 
 }
