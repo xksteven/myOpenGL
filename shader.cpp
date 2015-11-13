@@ -3,11 +3,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-<<<<<<< 8b44bd745288274e232fa73a9f0214115cd94305
+
 //#include <algorithm>
-=======
-#include <algorithm>
->>>>>>> added some shader programs
 using namespace std;
 
 #include <stdlib.h>
@@ -17,11 +14,8 @@ using namespace std;
 
 #include "shader.hpp"
 
-<<<<<<< 8b44bd745288274e232fa73a9f0214115cd94305
-GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path, const char * geometry_file_path){
-=======
 GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path,const char * geometry_file_path){
->>>>>>> added some shader programs
+
 
 	// Create the shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
@@ -97,7 +91,6 @@ GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path
 	GLuint ProgramID = glCreateProgram();
 	glAttachShader(ProgramID, VertexShaderID);
 	glAttachShader(ProgramID, FragmentShaderID);
-<<<<<<< 8b44bd745288274e232fa73a9f0214115cd94305
 
 	// If Geometry shader exists read it, compile, check, and prep for linking
 	if (geometry_file_path != NULL)
@@ -134,8 +127,6 @@ GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path
 		glAttachShader(ProgramID, GeometryShaderID);
 	}
 
-=======
->>>>>>> added some shader programs
 	glLinkProgram(ProgramID);
 
 	// Check the program
