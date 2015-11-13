@@ -9,8 +9,8 @@ INCLUDE = -I/usr/local/include
 LDFLAGS = -L/usr/local/lib
 #Use either glut or glfw
 #LIBS = -lglut -lGL -lGLU -lGLEW 
-LIBS = -lglfw -lGL -lGLU -lGLEW
-OBJS = mainopengl.cpp shader.cpp WindowCallbacks.cpp View.cpp
+LIBS = -lglfw -lGL -lGLEW
+OBJS = MainOpengl.cpp Shader.cpp WindowCallbacks.cpp View.cpp
 
 all:
 	g++ $(CFLAGS) $(OBJS) -o $(TARGET) $(LDFLAGS) $(LIBS)

@@ -12,7 +12,7 @@
 // #include <glm/glm.hpp> //matrix and vec library
 
 #include "WindowCallbacks.hpp"
-#include "shader.hpp"
+#include "Shader.hpp"
 // #include "View.hpp"
 
 int main(int argc, char** argv)
@@ -48,24 +48,28 @@ int main(int argc, char** argv)
     // callback class
     // View *view = SetupView(window);
 
-
-    // Initialize GLEW
-    // glewExperimental = true; // Needed for core profile
-    if (glewInit() != GLEW_OK) {
-        fprintf(stderr, "Failed to initialize GLEW\n");
-        return -1;
+    GLenum err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        std::cerr << "OpenGL1 error: " << err << std::endl;
     }
 
-    // Ensure we can capture the escape key being pressed below
-    glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
-
     // Initialize GLEW
-    glewExperimental = true; // Needed for core profile
+    glewExperimental = GL_TRUE; // Needed for core profile
     GLenum res = glewInit();
     if (res != GLEW_OK) {
         fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
         return -1;
     }
+
+    err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        std::cerr << "this is a know error with glew Init and can be ignored: " << err << std::endl;
+    }
+
+    // Ensure we can capture the escape key being pressed below
+    glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+
+
 
     // The ordering of when create shaders is called is important
     // Must be called after glewInit()
@@ -99,7 +103,11 @@ int main(int argc, char** argv)
         //Use this to poll events or wait for events to process
         glfwWaitEvents ();
         // glfwPollEvents();
-
+            // check OpenGL error
+        err;
+        while ((err = glGetError()) != GL_NO_ERROR) {
+            std::cerr << "OpenGL error: " << err << std::endl;
+        }
 
     } // Check if the ESC or 'Q' key was pressed or the window was closed
     while( glfwWindowShouldClose(window) == 0 );

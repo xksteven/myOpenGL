@@ -7,7 +7,9 @@
 // Include GLM
 #include <glm/glm.hpp> //matrix and vec library
 #include <glm/gtx/transform.hpp> // after <glm/glm.hpp>
-#include "shader.hpp"
+
+#include "Shader.hpp"
+
 #include <iostream>
 #include <stdio.h>
 
