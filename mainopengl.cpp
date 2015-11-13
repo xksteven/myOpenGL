@@ -12,7 +12,7 @@
 // #include <glm/glm.hpp> //matrix and vec library
 
 #include "WindowCallbacks.hpp"
-
+#include "shader.hpp"
 
 int main(int argc, char** argv)
 {
@@ -63,6 +63,10 @@ int main(int argc, char** argv)
         return -1;
     }
 
+    // Create and compile our GLSL program from the shaders
+    GLuint programID = LoadShaders( "SimpleVertexShader.vsh", "SimpleFragmentShader.fsh", NULL );
+
+
 
     // set up callbacks
     glfwSetWindowRefreshCallback (window, Display);
@@ -77,6 +81,9 @@ int main(int argc, char** argv)
             printf("NeedtoRedraw\n");
             Display (window);
         }
+
+        // Use our shader
+        glUseProgram(programID);
 
         // Swap buffers
         // glfwSwapBuffers(window);
