@@ -2,6 +2,22 @@
 #include "View.hpp"
 
 
+/* clip planes in world coordinates */
+#define NEAR_Z  0.2f 
+#define FAR_Z   500.0f
+
+#define FOVY        65.0f
+
+GLuint VBO;
+GLuint VertexArrayID;
+
+static const GLfloat g_vertex_buffer_data[] = 
+{
+    -1.0f, -1.0f, 0.0f,
+    1.0f, -1.0f, 0.0f,
+    0.0f,  1.0f, 0.0f,
+};
+
 View::View (GLFWwindow *window, int windowWidth, int windowHeight)
 {
     // link the window and the view together
@@ -16,10 +32,10 @@ View::View (GLFWwindow *window, int windowWidth, int windowHeight)
     this->needsRedraw	= true;
 
   /* initialize the camera */
-    // this->angle = 0; 
-    // this->camPos = cs237::vec3f(0.0, 8.0, 10.0);
-    // this->camAt = cs237::vec3f(0.0, 0.0, 0.0);
-    // this->camUp   = cs237::vec3f(0.0, 1.0, 0.0);
+    this->angle = 0; 
+    this->camPos = glm::vec3(0.0, 8.0, 10.0);
+    this->camAt  = glm::vec3(0.0, 0.0, 0.0);
+    this->camUp  = glm::vec3(0.0, 1.0, 0.0);
 
 
   /* initialize drawable objects */ 
@@ -30,15 +46,6 @@ View::View (GLFWwindow *window, int windowWidth, int windowHeight)
 
 }
 
-
-GLuint VBO;
-GLuint VertexArrayID;
-
-static const GLfloat g_vertex_buffer_data[] = {
-    -1.0f, -1.0f, 0.0f,
-    1.0f, -1.0f, 0.0f,
-    0.0f,  1.0f, 0.0f,
-};
 
 static void RenderSceneCB()
 {
@@ -75,6 +82,31 @@ static void CreateVertexBuffer()
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+}
+
+
+void View::InitRenderers ()
+{
+
+}
+
+/*! \brief initialize the projection matrix based on the current camera state. */
+void View::InitProjMatrix ()
+{
+    this->projectionMat = glm::perspective (
+    FOVY,
+    (float)this->windowWidth / (float)this->windowHeight,
+    NEAR_Z,
+    FAR_Z);
+}
+
+/*! \brief initialize the model-view matrix based on the current camera state. */
+void View::InitModelViewMatrix ()
+{
+    this->modelViewMat = glm::lookAt (
+    this->camPos,
+    this->camAt,
+    this->camUp);
 }
 
 void View::Render ()
