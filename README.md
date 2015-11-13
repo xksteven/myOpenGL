@@ -1,7 +1,7 @@
 # myOpenGL
 This is my work towards creating a frame work for future use in working with OpenGL 
 
-Tested on Ubuntu 15.10 and Mac OS 10.11
+Tested on Ubuntu 15.10
 
 Dependencies
 
