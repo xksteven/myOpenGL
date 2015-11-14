@@ -207,11 +207,7 @@ void View::Render ()
     // glUniformMatrix4fv(this->projMatID, 1, GL_FALSE, &this->projectionMat[0][0]);
     // glUniform4fv(this->colorID, 1, &this->color[0]);
 
-    printf("hello\n");
     this->renderer->CreateVertexBuffer();
-    printf("world\n");
     this->renderer->SetMatrices(this->modelViewMat,this->projectionMat);
-    printf("what's up\n");
     this->renderer->RenderSceneCB();
-    printf("dogg\n");
 }
