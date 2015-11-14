@@ -75,6 +75,7 @@ void Reshape (GLFWwindow *window, int windowWidth, int windowHeight)
 
 void cursor_Pos_Callback(GLFWwindow* window, double xpos, double ypos)
 {
+    view = (View *)glfwGetWindowUserPointer(window);
 
     // Get mouse location
     double prevxpos = view->prevxpos;
@@ -92,43 +93,65 @@ void cursor_Pos_Callback(GLFWwindow* window, double xpos, double ypos)
 
         // Compute time difference between current and last frame
         double currentTime = glfwGetTime();
-        float deltaTime = float(currentTime - lastTime)*1000;
+        float deltaTime = float(currentTime - lastTime)*10;
 
+        #ifdef DEBUG
         printf("during prevxpos = %f prevypos = %f\n",prevxpos,prevypos);
         printf("deltaTime = %f \n",deltaTime);
-
+        #endif
 
         glm::vec3   camPos = view->camPos;     //!< camera position in world space
         glm::vec3   camAt = view->camAt;      //!< camera look-at point in world space
         glm::vec3   camUp = view->camUp;  
 
+        #ifdef DEBUG
         printf("before camAt[0] = %f,camAt[1] = %f,camAt[2] = %f\n",
             camAt[0],camAt[1],camAt[2] );
 
         printf("before camUp[0] = %f,camUp[1] = %f,camUp[2] = %f\n",
             camUp[0],camUp[1],camUp[2] );
+        #endif
 
         glm::vec3 right = glm::normalize(glm::cross( camPos - camUp, camPos - camAt ));
 
+        #ifdef DEBUG
         printf("right[0] = %f,right[1] = %f,right[2] = %f\n",
             right[0],right[1],right[2] );
+        #endif
 
         float mousedeltax = float(xpos - prevxpos);
         float mousedeltay = float(ypos - prevypos);
+
+        #ifdef DEBUG
         printf("dx = %f dy = %f\n",mousedeltax,mousedeltay );
+        #endif
+        
         float atLen = glm::length(camPos - camAt);
-        camAt += right * mousedeltax * mouseSpeed;
+        camAt += right * mousedeltax * mouseSpeed * deltaTime;
+
+        #ifdef DEBUG
         printf("middle camAt[0] = %f,camAt[1] = %f,camAt[2] = %f\n",
             camAt[0],camAt[1],camAt[2] );
+        #endif
+
         camAt = glm::normalize(camPos - camAt) * atLen + camPos;
+
+        #ifdef DEBUG
         printf("after camAt[0] = %f,camAt[1] = %f,camAt[2] = %f\n",
             camAt[0],camAt[1],camAt[2] );
+        #endif
 
-        camUp += glm::normalize(camPos - camAt) * mousedeltay * mouseSpeed;
+        camUp += glm::normalize(camPos - camAt) * mousedeltay * mouseSpeed * deltaTime;
         camUp = glm::normalize(camUp);
 
+        #ifdef DEBUG
         printf("camUp[0] = %f,camUp[1] = %f,camUp[2] = %f\n",
             camUp[0],camUp[1],camUp[2] );
+        #endif
+
+        view->camPos = camPos;     //!< camera position in world space
+        view->camAt = camAt;      //!< camera look-at point in world space
+        view->camUp = camUp;
 
         // view->modelViewMat = glm::lookAt (
         // camPos,
@@ -136,9 +159,6 @@ void cursor_Pos_Callback(GLFWwindow* window, double xpos, double ypos)
         // camUp);
         view->InitModelViewMatrix ();
 
-        view->camPos = camPos;     //!< camera position in world space
-        view->camAt = camAt;      //!< camera look-at point in world space
-        view->camUp = camUp;
 
         view->needsRedraw = true;
         // Reset mouse positions
@@ -148,11 +168,6 @@ void cursor_Pos_Callback(GLFWwindow* window, double xpos, double ypos)
         // For the next frame, the "last time" will be "now"
         lastTime = currentTime;
     } 
-    else if (state != GLFW_PRESS)
-    {
-        view->prevxpos = std::nan("1");
-        view->prevypos = std::nan("1");
-    }
     else 
     {
         view->prevxpos = xpos;

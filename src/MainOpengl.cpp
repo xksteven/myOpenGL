@@ -104,8 +104,8 @@ int main(int argc, char** argv)
         //Use this to poll events or wait for events to process
         glfwWaitEvents ();
         // glfwPollEvents();
-            // check OpenGL error
-        err;
+        
+        // check OpenGL error
         while ((err = glGetError()) != GL_NO_ERROR) {
             std::cerr << "OpenGL error: " << err << std::endl;
         }

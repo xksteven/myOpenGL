@@ -3,7 +3,7 @@ TARGET = gl
 CC = g++
 
 ifdef DEBUG
-CFLAGS = -g -Wall -std=c++11
+CFLAGS = -g -Wall -std=c++11 -DDEBUG
 else
 CFLAGS = -std=c++11
 endif

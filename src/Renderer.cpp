@@ -149,7 +149,7 @@ void Renderer::CreateVertexBuffer()
     // Enable depth test
     glEnable(GL_DEPTH_TEST);
     // Accept fragment if it closer to the camera than the former one
-    glDepthFunc(GL_LESS); 
+    // glDepthFunc(GL_LESS); 
 
     // An array of 3 vectors which represents 3 vertices
 
@@ -169,6 +169,18 @@ void Renderer::CreateVertexBuffer()
 
     // glm::vec3 g_vertex_buffer_data[1]; 
     // g_vertex_buffer_data[0] = glm::vec3(-1.0f, -1.0f, 0.0f);
+
+
+    // Read it in as object files as opposed to the hard coded arrays above
+    // Read our .obj file
+    // std::vector<glm::vec3> vertices;
+    // std::vector<glm::vec2> uvs;
+    // std::vector<glm::vec3> normals; // Won't be used at the moment.
+    // bool res = loadOBJ("cube.obj", vertices, uvs, normals);
+    //How loading vertex buffer would change
+    // glGenBuffers(1, &this->VBO);
+    // glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
+    // glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
 
     glGenBuffers(1, this->VBO);
     glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));

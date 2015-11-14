@@ -11,10 +11,12 @@ Requires glfw3, glm, g++, glew, make
 
 One can install with the following on the command line:
 sudo apt-get install make g++ libglfw3-dev libglm-dev glew1.5-dev
- 
+
+run make -DEBUG=1 for debugging mode
 
 ##To Do
 
+- Test on Mac OSX
 - Lighting
 - Shadow Mapping + Normal Mapping
 - Mesh and model class
