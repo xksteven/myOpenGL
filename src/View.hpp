@@ -8,7 +8,10 @@
 #include <glm/glm.hpp> //matrix and vec library
 #include <glm/gtx/transform.hpp> // after <glm/glm.hpp>
 
-#include "Shader.hpp"
+#include "Renderer.hpp"
+
+// #include "Shader.hpp"
+// #include "texture.hpp"
 
 #include <iostream>
 #include <stdio.h>
@@ -32,10 +35,11 @@ class View {
 	    glm::vec3	camUp;	
 	    float angle;
 
+	    Renderer renderer;
 
 	    //All of this will be moved into the renderer class *********
  
-    	GLuint  modelViewMatID, colorID, projMatID;
+    	GLuint  modelViewMatID, colorID, projMatID,textureID;
 	    GLuint programID;
 	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
 
@@ -67,6 +71,9 @@ class View {
 	  /*! \brief render the state of the scene
 	   */
 	    void Render ();
+
+	    //to be deleted soon and moved to renderer
+	    // void CreateVertexBuffer();
 
 };
 

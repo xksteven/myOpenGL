@@ -11,9 +11,17 @@ INCLUDE = -I/usr/local/include
 LDFLAGS = -L/usr/local/lib
 #Use either glut or glfw
 #LIBS = -lglut -lGL -lGLU -lGLEW 
-LIBS = -lglfw -lGL -lGLEW
-OBJS = ./src/MainOpengl.cpp ./src/Shader.cpp \
-	./src/WindowCallbacks.cpp ./src/View.cpp
+
+ifeq ($(shell uname),Darwin)
+    LIBS = -framework OpenGL -framework GLUT
+else
+	LIBS = -lglfw -lGL -lGLEW
+endif
+
+#OBJS = ./src/MainOpengl.cpp ./src/Shader.cpp \
+#	./src/WindowCallbacks.cpp ./src/View.cpp
+
+OBJS = ./src/*.cpp
 
 all:
 	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LDFLAGS) $(LIBS)

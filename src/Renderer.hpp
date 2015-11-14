@@ -1,8 +1,8 @@
 #ifndef __RENDERER_HPP__
 #define __RENDERER_HPP__
 
-#include "shader.hpp"
-#include "View.hpp"
+#include "Shader.hpp"
+#include "texture.hpp"
 
 class Renderer 
 {
@@ -11,7 +11,13 @@ class Renderer
 
 		void Render();
 
-    	GLuint  modelViewMatID, colorID, projMatID;
+		void CreateVertexBuffer();
+
+    	GLuint  modelViewMatID, colorID, projMatID,textureID;
+	    GLuint programID;
+	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
+
+
 };
 
 #endif
