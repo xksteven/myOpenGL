@@ -79,7 +79,7 @@ void cursor_Pos_Callback(GLFWwindow* window, double xpos, double ypos)
     // Get mouse location
     double prevxpos = view->prevxpos;
     double prevypos = view->prevypos;
-    printf("prevxpos = %f %d\n",prevxpos,!std::isnan(prevxpos));
+    // printf("prevxpos = %f %d\n",prevxpos,!std::isnan(prevxpos));
 
     // Only want to move if user has clicked the left mouse button
     int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
@@ -130,10 +130,11 @@ void cursor_Pos_Callback(GLFWwindow* window, double xpos, double ypos)
         printf("camUp[0] = %f,camUp[1] = %f,camUp[2] = %f\n",
             camUp[0],camUp[1],camUp[2] );
 
-        view->modelViewMat = glm::lookAt (
-        camPos,
-        camAt,
-        camUp);
+        // view->modelViewMat = glm::lookAt (
+        // camPos,
+        // camAt,
+        // camUp);
+        view->InitModelViewMatrix ();
 
         view->camPos = camPos;     //!< camera position in world space
         view->camAt = camAt;      //!< camera look-at point in world space
@@ -183,6 +184,16 @@ void Key (GLFWwindow *window, int key, int scancode, int action, int mods)
             case GLFW_KEY_ESCAPE: // 'ESC' ==> quit
                 glfwSetWindowShouldClose (window, true);
                 break;
+            case GLFW_KEY_UP:
+                view->camPos += (view->camPos - view->camAt)*0.1f;
+                view->needsRedraw = true;
+                view->InitModelViewMatrix ();
+            break;
+            case GLFW_KEY_DOWN:
+                view->camPos -= (view->camPos - view->camAt)*0.1f;
+                view->needsRedraw = true;
+                view->InitModelViewMatrix ();
+            break;
             // case GLFW_KEY_LEFT:
             //     view->angle = view->angle - cameraSpeed;
             //     view->MoveAround(); 
