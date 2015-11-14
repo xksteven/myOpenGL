@@ -48,10 +48,10 @@ int main(int argc, char** argv)
     // callback class
     // View *view = SetupView(window);
 
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        std::cerr << "OpenGL1 error: " << err << std::endl;
-    }
+    // GLenum  err;
+    // while ((err = glGetError()) != GL_NO_ERROR) {
+    //     std::cerr << "OpenGL1 error: " << err << std::endl;
+    // }
 
     // Initialize GLEW
     glewExperimental = GL_TRUE; // Needed for core profile
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    err;
+    GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
         std::cerr << "this is a know error with glew Init and can be ignored: " << err << std::endl;
     }

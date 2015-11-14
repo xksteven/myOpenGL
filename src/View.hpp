@@ -35,13 +35,13 @@ class View {
 	    glm::vec3	camUp;	
 	    float angle;
 
-	    Renderer renderer;
+	    Renderer* renderer;
 
 	    //All of this will be moved into the renderer class *********
  
-    	GLuint  modelViewMatID, colorID, projMatID,textureID;
-	    GLuint programID;
-	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
+    	// GLuint  modelViewMatID, colorID, projMatID,textureID;
+	    // GLuint programID;
+	    // glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
 
 	    //End of All of this will be moved into the renderer class *********
 
