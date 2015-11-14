@@ -145,6 +145,7 @@ Renderer::Renderer (const char* vertShader, const char* fragShader, const char* 
 //All of this will be moved into a renderer class ********
 void Renderer::CreateVertexBuffer()
 {
+    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
     // Enable depth test
     glEnable(GL_DEPTH_TEST);
     // Accept fragment if it closer to the camera than the former one
@@ -211,14 +212,15 @@ void Renderer::SetMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat)
 void Renderer::RenderSceneCB()
 {
 
-    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
     // Clear the screen
     // glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
-    
+ 
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
+
     // Use our shader
     glUseProgram(this->programID);
 
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 
     glBindVertexArray(*(this->VertexArrayID));
 

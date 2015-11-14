@@ -86,6 +86,7 @@ int main(int argc, char** argv)
     glfwSetWindowSizeCallback (window, Reshape);
     glfwSetWindowIconifyCallback (window, Visible);
     glfwSetKeyCallback (window, Key);
+    glfwSetCursorPosCallback(window, cursor_Pos_Callback);
 
     //main loop
     do{

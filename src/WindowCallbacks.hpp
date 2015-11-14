@@ -14,6 +14,6 @@ void Display (GLFWwindow *window);
 void Reshape (GLFWwindow *window, int wid, int ht);
 void Key (GLFWwindow *window, int key, int scancode, int action, int mods);
 void Visible (GLFWwindow *window, int state);
-
+void cursor_Pos_Callback(GLFWwindow* window, double xpos, double ypos);
 
 #endif

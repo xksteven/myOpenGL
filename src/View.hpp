@@ -26,6 +26,9 @@ class View {
 		bool closeWindow;
 		int windowWidth, windowHeight;
 		bool windowVisibility;
+
+	    // Stores prev mouse location
+	    double prevxpos = std::nan("1"), prevypos = std::nan("1");
 	
 		glm::mat4	modelViewMat;	//!< the current model-view matrix
 	    glm::mat4	projectionMat;	//!< the current projection matrix

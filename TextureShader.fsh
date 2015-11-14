@@ -33,8 +33,8 @@ void main ()
     // } else {
 	   //  fragColor = vec4( (ambient + max(0, dot(-direction, norm)) * intensity), 1) * vColor;
     // }
-    vec3 color = texture2D( myTextureSampler, fragmentTextureCoordinates ).rgb;
-    fragColor = vec4(color, 1.0);
+    fragColor = texture2D( myTextureSampler, fragmentTextureCoordinates );
+    // fragColor = vec4(color, 1.0);
 }
 
 

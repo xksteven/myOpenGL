@@ -146,7 +146,7 @@ void View::InitRenderers ()
 {
 
     this->renderer = new Renderer("TextureShader.vsh", "TextureShader.fsh", NULL );
-
+    this->renderer->CreateVertexBuffer();
     // // Create and compile our GLSL program from the shaders
     // // this->programID = LoadShaders( "SimpleVertexShader.vsh", "SimpleFragmentShader.fsh", NULL );
     // this->programID = LoadShaders( "TextureShader.vsh", "TextureShader.fsh", NULL );
@@ -207,7 +207,7 @@ void View::Render ()
     // glUniformMatrix4fv(this->projMatID, 1, GL_FALSE, &this->projectionMat[0][0]);
     // glUniform4fv(this->colorID, 1, &this->color[0]);
 
-    this->renderer->CreateVertexBuffer();
+
     this->renderer->SetMatrices(this->modelViewMat,this->projectionMat);
     this->renderer->RenderSceneCB();
 }
