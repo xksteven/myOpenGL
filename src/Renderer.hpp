@@ -11,6 +11,10 @@
 
 #include "Shader.hpp"
 #include "texture.hpp"
+#include "objloader.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
 
 #define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
 #include <IL/il.h>
@@ -37,7 +41,7 @@ class Renderer
 		GLuint* VBO;
 		GLuint* colorVBO;
 		GLuint* textureVBO;
-
+		int numVerts;
 
 	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
 

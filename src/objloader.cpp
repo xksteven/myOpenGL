@@ -1,9 +1,4 @@
-#include <vector>
-#include <stdio.h>
-#include <string>
-#include <cstring>
 
-#include <glm/glm.hpp>
 
 #include "objloader.hpp"
 
@@ -82,6 +77,7 @@ bool loadOBJ(
 			// Probably a comment, eat up the rest of the line
 			char stupidBuffer[1000];
 			fgets(stupidBuffer, 1000, file);
+			// printf("%s\n",stupidBuffer );
 		}
 
 	}

@@ -183,26 +183,6 @@ void Renderer::CreateVertexBuffer()
     // glm::vec3 g_vertex_buffer_data[1]; 
     // g_vertex_buffer_data[0] = glm::vec3(-1.0f, -1.0f, 0.0f);
 
-
-    // Read it in as object files as opposed to the hard coded arrays above
-    // Read our .obj file
-    // std::vector<glm::vec3> vertices;
-    // std::vector<glm::vec2> uvs;
-    // std::vector<glm::vec3> normals; // Won't be used at the moment.
-    // bool res = loadOBJ("cube.obj", vertices, uvs, normals);
-    //How loading vertex buffer would change
-    // glGenBuffers(1, &this->VBO);
-    // glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
-    // glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-
-    glGenBuffers(1, this->VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));
-    glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-
-    // glGenBuffers(1, &colorVBO);
-    // glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(g_color_buffer_data), g_color_buffer_data, GL_STATIC_DRAW);
-
     // Load the texture using any two methods
     // GLuint Texture = loadBMP_custom("uvtemplate.bmp");
     GLuint Texture = this->image_ID[0];
@@ -210,9 +190,36 @@ void Renderer::CreateVertexBuffer()
     // Get a handle for our "myTextureSampler" uniform
     GLuint TextureID  = glGetUniformLocation(this->programID, "myTextureSampler");
 
+    // glGenBuffers(1, this->VBO);
+    // glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+    // // glGenBuffers(1, &colorVBO);
+    // // glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+    // // glBufferData(GL_ARRAY_BUFFER, sizeof(g_color_buffer_data), g_color_buffer_data, GL_STATIC_DRAW);
+
+    // glGenBuffers(1, this->textureVBO);
+    // glBindBuffer(GL_ARRAY_BUFFER, *(this->textureVBO));
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
+
+
+    // Read it in as object files as opposed to the hard coded arrays above
+    // Read our .obj file
+    std::vector<glm::vec3> vertices;
+    std::vector<glm::vec2> uvs;
+    std::vector<glm::vec3> normals; // Won't be used at the moment.
+    bool res = loadOBJ("earth.obj", vertices, uvs, normals);
+    //How loading vertex buffer would change
+    glGenBuffers(1, this->VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
+    this->numVerts = vertices.size();
+
+    GLuint uvbuffer;
     glGenBuffers(1, this->textureVBO);
     glBindBuffer(GL_ARRAY_BUFFER, *(this->textureVBO));
-    glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
+
 
     // Bind our texture in Texture Unit 0
     glActiveTexture(GL_TEXTURE0);
@@ -274,7 +281,8 @@ void Renderer::RenderScene()
 
     // glDrawArrays(GL_POINTS, 0, 1);
     // To draw only really need to rebind VAO and relevant VBO's again
-    glDrawArrays(GL_TRIANGLES, 0, 12*3);
+    // glDrawArrays(GL_TRIANGLES, 0, 12*3);
+    glDrawArrays(GL_TRIANGLES, 0, this->numVerts);
 
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
