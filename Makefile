@@ -38,7 +38,7 @@ all:
 	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(INCLUDE) $(LDFLAGS) $(LIBS) \
 	$(DEVIL_LIBS) $(LINKER)
 
-devil:
+includes:
 	cd  ./include/devil-1.7.99/ ; mkdir -p build ; ./configure --enable-ILUT --enable-ILU --prefix=$(CURR_DIR)/include/devil-1.7.99/build ; \
 	make ; \
 	make install ; \
