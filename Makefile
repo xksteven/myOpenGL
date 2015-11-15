@@ -7,8 +7,9 @@ CFLAGS = -g -Wall -std=c++11 -DDEBUG
 else
 CFLAGS = -std=c++11
 endif
-INCLUDE = -I/usr/local/include 
-LDFLAGS = -L/usr/local/lib
+INCLUDE = -I/usr/local/include -I./include/devil-1.7.99/include 
+		# -I./include/devil-1.7.99/include/IL
+LDFLAGS = -L/usr/local/lib -L./include/devil-1.7.99/lib
 #Use either glut or glfw
 #LIBS = -lglut -lGL -lGLU -lGLEW 
 
@@ -24,7 +25,7 @@ endif
 OBJS = ./src/*.cpp
 
 all:
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LDFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) -o $(TARGET) $(LDFLAGS) $(LIBS)
 
 clean:
 	rm gl

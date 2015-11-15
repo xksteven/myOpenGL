@@ -11,6 +11,12 @@
 #include "Shader.hpp"
 #include "texture.hpp"
 
+// #include "include/"
+#define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
+#include <IL/il.h>
+#include <IL/ilu.h>
+#include <IL/ilut.h>
+
 class Renderer 
 {
 	public:
@@ -20,15 +26,19 @@ class Renderer
 
 		void CreateVertexBuffer();
 		void SetMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat);
-		void RenderSceneCB();
+		void RenderScene();
+
+    	GLuint  modelViewMatID, colorID, projMatID,textureID;
+	    GLuint programID;
+
+		ILuint image_ID[1]; 				// Create a ILuint to hold our image ID
 
 		GLuint* VertexArrayID;
 		GLuint* VBO;
 		GLuint* colorVBO;
 		GLuint* textureVBO;
 
-    	GLuint  modelViewMatID, colorID, projMatID,textureID;
-	    GLuint programID;
+
 	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
 
 

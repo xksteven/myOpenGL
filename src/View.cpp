@@ -209,5 +209,5 @@ void View::Render ()
 
 
     this->renderer->SetMatrices(this->modelViewMat,this->projectionMat);
-    this->renderer->RenderSceneCB();
+    this->renderer->RenderScene();
 }

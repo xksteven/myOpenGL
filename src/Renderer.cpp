@@ -151,6 +151,17 @@ void Renderer::CreateVertexBuffer()
     // Accept fragment if it closer to the camera than the former one
     // glDepthFunc(GL_LESS); 
 
+    unsigned int image_ID;
+    const char* file_name = "earthmap1k.png";
+
+    ilInit();
+    iluInit();
+    ilutInit();
+
+    ilutRenderer(ILUT_OPENGL);
+
+    this->image_ID[0] = ilutGLLoadImage((char*)file_name);
+
     // An array of 3 vectors which represents 3 vertices
 
     this->VertexArrayID = new GLuint[1];
@@ -221,7 +232,7 @@ void Renderer::SetMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat)
 
 }
 
-void Renderer::RenderSceneCB()
+void Renderer::RenderScene()
 {
 
 

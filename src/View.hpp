@@ -10,8 +10,6 @@
 
 #include "Renderer.hpp"
 
-// #include "Shader.hpp"
-// #include "texture.hpp"
 
 #include <iostream>
 #include <stdio.h>
