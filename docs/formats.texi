@@ -1,0 +1,374 @@
+
+
+@section Class base
+Basic must-have supported formats that don't have external dependencies
+@ftindex BMP
+@subsection Format BMP
+@code{BMP} is a standard Windows bitmap.
+@itemize
+	@item Extensions: @code{*.bmp}
+ @code{*.bmp}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+@ftindex CUT
+@subsection Format CUT
+@code{CUT} is a DrHalo file.
+@itemize
+	@item Extensions: @code{*.cut}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex CHEAD
+@subsection Format CHEAD
+Embed images into a C-styled header
+@itemize
+	@item Extensions: @code{*.h}
+	@item Supported operations:  SAVE
+@end itemize
+
+@ftindex FITS
+@subsection Format FITS
+@code{FITS} stands for Flexible image transport system
+@itemize
+	@item Extensions: @code{*.fits}, @code{*.fit}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex GIF
+@subsection Format GIF
+@code{GIF} is lossy and proprietary format used mainly to make animations
+@itemize
+	@item Extensions: @code{*.gif}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex HDR
+@subsection Format HDR
+@code{HDR} is the Radiance High Dynamic Range format, using more bits per channel than normal.
+@itemize
+	@item Extensions: @code{*.hdr}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+@ftindex ICON
+@subsection Format ICON
+@code{ICO} is the icon format for the Windows operating system.
+@itemize
+	@item Extensions: @code{*.ico}, @code{*.cur}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex IFF
+@subsection Format IFF
+@code{IFF} (Interchange File Format) is used to transfer images between software from different companies.
+@itemize
+	@item Extensions: @code{*.iff}, @code{*.ilbm}, @code{*.lbm}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex PCX
+@subsection Format PCX
+@code{PCX} is one of the first widely accepted DOS imaging standards
+@itemize
+	@item Extensions: @code{*.pcx}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+@ftindex PIC
+@subsection Format PIC
+
+@itemize
+	@item Extensions: @code{*.pic}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex PIX
+@subsection Format PIX
+
+@itemize
+	@item Extensions: @code{*.pix}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex PNM
+@subsection Format PNM
+@code{PNM} (Portable aNy Map format) is considered the least-common-denominator for converting pixmap, graymap, or bitmap files between different platforms.
+@itemize
+	@item Extensions: @code{*.pnm}, @code{*.pbm}, @code{*.pgm}, @code{*.ppm}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+@ftindex RAW
+@subsection Format RAW
+@code{RAW} is simply raw data.
+@itemize
+	@item Extensions: @code{*.raw}
+	@item Supported operations:  LOAD SAVE
+@end itemize
+
+@ftindex TGA
+@subsection Format TGA
+@code{TGA} (aka @code{TARGA} file format) has been used mainly in games. It is open and simple.
+@itemize
+	@item Extensions: @code{*.tga}, @code{*.vda}, @code{*.icb}, @code{*.vst}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+
+@section Class extra
+Maybe less common non-game formats that also don't have external dependencies
+@ftindex DCX
+@subsection Format DCX
+@code{DCX} is a multi-page @code{PCX} file.
+@itemize
+	@item Extensions: @code{*.dcx}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex DOOM
+@subsection Format DOOM
+@code{DOOM} (@code{WAD}) is the format for graphics in the original Doom I/II.
+@itemize
+	@item Extensions: @code{*.wad}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex ICNS
+@subsection Format ICNS
+@code{ICNS} is the icon format for the Mac OS X operation system.
+@itemize
+	@item Extensions: @code{*.icns}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex ILBM
+@subsection Format ILBM
+@code{ILBM} (Amiga Interleaved BitMap Format).
+@itemize
+	@item Extensions: @code{*.ilbm}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex PCD
+@subsection Format PCD
+@code{PCD} is the Kodak PhotoCD format.
+@itemize
+	@item Extensions: @code{*.pcd}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex PSD
+@subsection Format PSD
+@code{PSD} is the PhotoShop native file format.
+@itemize
+	@item Extensions: @code{*.psd}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+@ftindex PSP
+@subsection Format PSP
+@code{PSP} is the Paint Shop Pro native file format.
+@itemize
+	@item Extensions: @code{*.psp}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex PXR
+@subsection Format PXR
+@code{PXR} is used by Pixar.
+@itemize
+	@item Extensions: @code{*.pxr}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex SGI
+@subsection Format SGI
+@code{SGI} is the native raster graphics file format for Silicon Graphics workstations
+@itemize
+	@item Extensions: @code{*.sgi}, @code{*.bw}, @code{*.rgb}, @code{*.rgba}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+@ftindex SUN
+@subsection Format SUN
+@code{SUN} is the image format used on Sun's operating systems.
+@itemize
+	@item Extensions: @code{*.sun}, @code{*.ras}, @code{*.rs}, @code{*.im1}, @code{*.im8}, @code{*.im24}, @code{*.im32}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex WBMP
+@subsection Format WBMP
+@code{WBMP} (Wireless Application Protocol Bitmap) is a monochrome graphics file format optimized for mobile computing devices
+@itemize
+	@item Extensions: @code{*.wbmp}
+	@item Supported operations:  LOAD SAVE
+@end itemize
+
+@ftindex XPM
+@subsection Format XPM
+@code{XPM} (X PixMap) is an ASCII-based image used in X Windows.
+@itemize
+	@item Extensions: @code{*.xpm}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex DICOM
+@subsection Format DICOM
+Digital Imaging and Communications in Medicine format.
+@itemize
+	@item Extensions: @code{*.dicom}, @code{*.dcm}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+
+@section Class game
+Game formats. You are not interested in them when doing scientific imaging...
+@ftindex LIF
+@subsection Format LIF
+@code{LIF} is the image format of the game Homeworld.
+@itemize
+	@item Extensions: @code{*.lif}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex MDL
+@subsection Format MDL
+@code{MDL} is the format for models in the game Half-Life.
+@itemize
+	@item Extensions: @code{*.mdl}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex ROT
+@subsection Format ROT
+@code{ROT} is the image format for the game Homeworld 2.
+@itemize
+	@item Extensions: @code{*.rot}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex TEXTURE
+@subsection Format TEXTURE
+@code{TEXTURE} is the format used in Medieval II: Total War (similar to @code{DDS}).
+@itemize
+	@item Extensions: @code{*.texture}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex TPL
+@subsection Format TPL
+@code{TPL} is the format used by many GameCube and Wii games.
+@itemize
+	@item Extensions: @code{*.tpl}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex UTX
+@subsection Format UTX
+@code{UTX} is Unreal and Unreal Tournament texture format
+@itemize
+	@item Extensions: @code{*.utx}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex VTF
+@subsection Format VTF
+@code{VTF} (Valve Texture Format) is used by games based on Valve's Source engine.
+@itemize
+	@item Extensions: @code{*.vtf}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex WAL
+@subsection Format WAL
+@code{WAL} is the image format used for the game Quake 2.
+@itemize
+	@item Extensions: @code{*.wal}
+	@item Supported operations:  LOAD
+@end itemize
+
+@ftindex BLP
+@subsection Format BLP
+@code{BLP} is Blizzard texture.
+@itemize
+	@item Extensions: @code{*.blp}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex IWI
+@subsection Format IWI
+@code{IWI} Infinity Ward Image (Call of duty).
+@itemize
+	@item Extensions: @code{*.iwi}
+	@item Supported operations:  LOAD ISVALID
+@end itemize
+
+@ftindex FTX
+@subsection Format FTX
+Heavy Metal: FAKK2 file.
+@itemize
+	@item Extensions: @code{*.ftx}
+	@item Supported operations:  LOAD
+@end itemize
+
+
+@section Class jpeg
+JPEG format class, depends on libjpeg
+@ftindex JPEG
+@subsection Format JPEG
+@code{JPEG} is most common lossy format. libjpeg powered
+@itemize
+	@item Extensions: @code{*.jpeg}, @code{*.jpg}, @code{*.jpe}
+	@item Supported operations:  LOAD SAVE ISVALID
+	@item Dependency: @code{jpeg} library
+@end itemize
+
+
+@section Class jp2
+JP2 format class, depends on jasper
+
+@section Class exr
+EXR format class, depends on OpenExr
+
+@section Class png
+PNG format class, depends on libpng
+@ftindex PNG
+@subsection Format PNG
+@code{PNG} is a smart, loseless and even open format. libpng powered.
+@itemize
+	@item Extensions: @code{*.png}
+	@item Supported operations:  LOAD SAVE ISVALID
+	@item Dependency: @code{png} library
+@end itemize
+
+
+@section Class mng
+MNG format class, depends on libmng
+
+@section Class tiff
+TIFF fomat class, depends on libtiff
+@ftindex TIFF
+@subsection Format TIFF
+@code{TIFF} is a lossless format supporting greater color depths. libtiff powered
+@itemize
+	@item Extensions: @code{*.tiff}, @code{*.tif}
+	@item Supported operations:  LOAD SAVE ISVALID
+	@item Dependency: @code{tiff} library
+@end itemize
+
+
+@section Class dds
+DDS may depend on libsquish and nvidia texture tools
+@ftindex DDS
+@subsection Format DDS
+@code{DDS} (DirectDraw Surface) is used by DirectX to load images (usually DXTC).
+@itemize
+	@item Extensions: @code{*.dds}
+	@item Supported operations:  LOAD SAVE ISVALID
+@end itemize
+
+
+@section Class others
+Other, probably problematic, formats...

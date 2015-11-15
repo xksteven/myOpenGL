@@ -142,7 +142,7 @@ Renderer::Renderer (const char* vertShader, const char* fragShader, const char* 
 
 }
 
-//All of this will be moved into a renderer class ********
+//All of this will be moved into a mesh class ********
 void Renderer::CreateVertexBuffer()
 {
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
@@ -160,7 +160,9 @@ void Renderer::CreateVertexBuffer()
 
     ilutRenderer(ILUT_OPENGL);
 
-    this->image_ID[0] = ilutGLLoadImage((char*)file_name);
+    // this->image_ID[0] = ilutGLLoadImage((char*)file_name);
+    this->image_ID[0] = loadImage(file_name);
+    printf("image loaded? %d\n", this->image_ID[0]);
 
     // An array of 3 vectors which represents 3 vertices
 
@@ -202,8 +204,8 @@ void Renderer::CreateVertexBuffer()
     // glBufferData(GL_ARRAY_BUFFER, sizeof(g_color_buffer_data), g_color_buffer_data, GL_STATIC_DRAW);
 
     // Load the texture using any two methods
-    GLuint Texture = loadBMP_custom("uvtemplate.bmp");
-    // GLuint Texture = loadDDS("uvtemplate.DDS");
+    // GLuint Texture = loadBMP_custom("uvtemplate.bmp");
+    GLuint Texture = this->image_ID[0];
     
     // Get a handle for our "myTextureSampler" uniform
     GLuint TextureID  = glGetUniformLocation(this->programID, "myTextureSampler");
@@ -221,6 +223,7 @@ void Renderer::CreateVertexBuffer()
     //If you unbind VAO rebind it before you describe the VBO's
     glBindVertexArray (0);
     glBindBuffer (GL_ARRAY_BUFFER, 0);
+
 }
 
 void Renderer::SetMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat)

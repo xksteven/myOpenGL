@@ -8,10 +8,10 @@
 #include <glm/glm.hpp> //matrix and vec library
 #include <glm/gtx/transform.hpp> // after <glm/glm.hpp>
 
+
 #include "Shader.hpp"
 #include "texture.hpp"
 
-// #include "include/"
 #define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
 #include <IL/il.h>
 #include <IL/ilu.h>

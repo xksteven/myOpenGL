@@ -4,21 +4,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
 
 #include <GL/glew.h>
 
 #include <GLFW/glfw3.h>
 
+#define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
+#include <IL/il.h>
+#include <IL/ilu.h>
+#include <IL/ilut.h>
+
 // Load a .BMP file using our custom loader
-GLuint loadBMP_custom(const char * imagepath);
+// GLuint loadBMP_custom(const char * imagepath);
 
-//// Since GLFW 3, glfwLoadTexture2D() has been removed. You have to use another texture loading library, 
-//// or do it yourself (just like loadBMP_custom and loadDDS)
-//// Load a .TGA file using GLFW's own loader
-//GLuint loadTGA_glfw(const char * imagepath);
-
-// Load a .DDS file using GLFW's own loader
-GLuint loadDDS(const char * imagepath);
-
+	GLuint loadImage(const char * imagepath);
 
 #endif

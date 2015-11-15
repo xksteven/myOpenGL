@@ -64,7 +64,8 @@ int main(int argc, char** argv)
 
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
-        std::cerr << "this is a know error with glew Init and can be ignored: " << err << std::endl;
+        //This loop should only happen once and its because of glewExperimental = GL_TRUE
+        //std::cerr << "this is a known error with glew Init and can be ignored: " << err << std::endl;
     }
 
     // Ensure we can capture the escape key being pressed below

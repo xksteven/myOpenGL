@@ -1,0 +1,453 @@
+/* include/IL/config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define if building universal (internal helper macro) */
+#undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Altivec extension found */
+#undef ALTIVEC_GCC
+
+/* Define if you intend to build some parts of DevIL as modules */
+#undef BUILD_MODULES
+
+/* The bare name of the C compiler used. */
+#undef C_COMPILER
+
+/* nvtt support */
+#undef DDS_NO_
+
+/* What CFLAGS have we used. Useful for the logging */
+#undef DEVIL_CFLAGS_STR
+
+/* What libraries have we linked to */
+#undef DEVIL_LIBS_STR
+
+/* Define to 1 if translation of program messages to the user's native
+   language is requested. */
+#undef ENABLE_NLS
+
+/* PPC_ASM assembly found */
+#undef GCC_PCC_ASM
+
+/* X86_64_ASM assembly found */
+#undef GCC_X86_64_ASM
+
+/* X86_ASM assembly found */
+#undef GCC_X86_ASM
+
+/* Define to 1 if you have the MacOS X function CFLocaleCopyCurrent in the
+   CoreFoundation framework. */
+#undef HAVE_CFLOCALECOPYCURRENT
+
+/* Define to 1 if you have the MacOS X function CFPreferencesCopyAppValue in
+   the CoreFoundation framework. */
+#undef HAVE_CFPREFERENCESCOPYAPPVALUE
+
+/* Define if the GNU dcgettext() function is already present or preinstalled.
+   */
+#undef HAVE_DCGETTEXT
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define if the GNU gettext() function is already present or preinstalled. */
+#undef HAVE_GETTEXT
+
+/* Define to 1 if you have the <GLUT/glut.h> header file. */
+#undef HAVE_GLUT_GLUT_H
+
+/* Define to 1 if you have the <GL/glut.h> header file. */
+#undef HAVE_GL_GLUT_H
+
+/* Define to 1 if you have the <GL/glu.h> header file. */
+#undef HAVE_GL_GLU_H
+
+/* Define to 1 if you have the <GL/gl.h> header file. */
+#undef HAVE_GL_GL_H
+
+/* Define if you have the iconv() function and it works. */
+#undef HAVE_ICONV
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `m' library (-lm). */
+#undef HAVE_LIBM
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the <OpenGL/glu.h> header file. */
+#undef HAVE_OPENGL_GLU_H
+
+/* Define to 1 if you have the <OpenGL/gl.h> header file. */
+#undef HAVE_OPENGL_GL_H
+
+/* Define if you have POSIX threads libraries and header files. */
+#undef HAVE_PTHREAD
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Use nonstandard varargs form for the GLU tesselator callback */
+#undef HAVE_VARARGS_GLU_TESSCB
+
+/* Define to 1 or 0, depending whether the compiler supports simple visibility
+   declarations. */
+#undef HAVE_VISIBILITY
+
+/* Define to 1 if you have the <windows.h> header file. */
+#undef HAVE_WINDOWS_H
+
+/* Support Allegro API */
+#undef ILUT_USE_ALLEGRO
+
+/* Support DirectX8 API */
+#undef ILUT_USE_DIRECTX8
+
+/* Support DirectX9 API */
+#undef ILUT_USE_DIRECTX9
+
+/* Define if system supports OpenGL API */
+#undef ILUT_USE_OPENGL
+
+/* Support SDL API */
+#undef ILUT_USE_SDL
+
+/* Support X11 API */
+#undef ILUT_USE_X11
+
+/* Support X11 XRender extension */
+#undef ILUT_USE_XRENDER
+
+/* Support X11 XShm extension */
+#undef ILUT_USE_XSHM
+
+/* Define if you want to build ILU part of DevIL (used in DevIL
+   examples/tests) */
+#undef ILU_ENABLED
+
+/* Define if you can support at least some ASM */
+#undef IL_INLINE_ASM
+
+/* Name of the env variable used to specify where to log to. */
+#undef IL_LOGFILE_ENV
+
+/* Name of the env variable used to specify where to log to. */
+#undef IL_LOGLEVEL_ENV
+
+/* Name of the env variable used to point to the modules directory. */
+#undef IL_MODULES_ENV
+
+/* ltdl support */
+#undef IL_NO_
+
+/* blp support (BLP is Blizzard texture.) */
+#undef IL_NO_BLP
+
+/* bmp support (BMP is a standard Windows bitmap.) */
+#undef IL_NO_BMP
+
+/* header support (Embed images into a C-styled header) */
+#undef IL_NO_CHEAD
+
+/* cut support (CUT is a DrHalo file.) */
+#undef IL_NO_CUT
+
+/* dcx support (DCX is a multi-page PCX file.) */
+#undef IL_NO_DCX
+
+/* dds support (DDS (DirectDraw Surface) is used by DirectX to load images
+   (usually DXTC).) */
+#undef IL_NO_DDS
+
+/* dicom support (Digital Imaging and Communications in Medicine format.) */
+#undef IL_NO_DICOM
+
+/* doom support (DOOM (WAD) is the format for graphics in the original Doom
+   I/II.) */
+#undef IL_NO_DOOM
+
+/* exr support (EXR is a HDR image file format standardized by Industrial
+   Light and Magic. OpenEXR powered) */
+#undef IL_NO_EXR
+
+/* fits support (FITS stands for Flexible image transport system) */
+#undef IL_NO_FITS
+
+/* ftx support (Heavy Metal: FAKK2 file.) */
+#undef IL_NO_FTX
+
+/* Define if you want to disable support for various game formats */
+#undef IL_NO_GAMES
+
+/* gif support (GIF is lossy and proprietary format used mainly to make
+   animations) */
+#undef IL_NO_GIF
+
+/* hdr support (HDR is the Radiance High Dynamic Range format, using more bits
+   per channel than normal.) */
+#undef IL_NO_HDR
+
+/* icns support (ICNS is the icon format for the Mac OS X operation system.)
+   */
+#undef IL_NO_ICNS
+
+/* icon support (ICO is the icon format for the Windows operating system.) */
+#undef IL_NO_ICON
+
+/* iff support (IFF (Interchange File Format) is used to transfer images
+   between software from different companies.) */
+#undef IL_NO_IFF
+
+/* ilbm support (ILBM (Amiga Interleaved BitMap Format).) */
+#undef IL_NO_ILBM
+
+/* iwi support (IWI Infinity Ward Image (Call of duty).) */
+#undef IL_NO_IWI
+
+/* jp2 support (JP2 (JPEG 2000) is a better, but not so widespread,
+   alternative to JPEG. JasPer powered) */
+#undef IL_NO_JP2
+
+/* jpeg support (JPEG is most common lossy format. libjpeg powered) */
+#undef IL_NO_JPEG
+
+/* We don't have LCMS */
+#undef IL_NO_LCMS
+
+/* lif support (LIF is the image format of the game Homeworld.) */
+#undef IL_NO_LIF
+
+/* mdl support (MDL is the format for models in the game Half-Life.) */
+#undef IL_NO_MDL
+
+/* mng support (MNG is basically the animated version of PNG but is not
+   widespread.) */
+#undef IL_NO_MNG
+
+/* pcd support (PCD is the Kodak PhotoCD format.) */
+#undef IL_NO_PCD
+
+/* pcx support (PCX is one of the first widely accepted DOS imaging standards)
+   */
+#undef IL_NO_PCX
+
+/* pic support () */
+#undef IL_NO_PIC
+
+/* pix support () */
+#undef IL_NO_PIX
+
+/* png support (PNG is a smart, loseless and even open format. libpng
+   powered.) */
+#undef IL_NO_PNG
+
+/* pnm support (PNM (Portable aNy Map format) is considered the
+   least-common-denominator for converting pixmap, graymap, or bitmap files
+   between different platforms.) */
+#undef IL_NO_PNM
+
+/* psd support (PSD is the PhotoShop native file format.) */
+#undef IL_NO_PSD
+
+/* psp support (PSP is the Paint Shop Pro native file format.) */
+#undef IL_NO_PSP
+
+/* pxr support (PXR is used by Pixar.) */
+#undef IL_NO_PXR
+
+/* raw support (RAW is simply raw data.) */
+#undef IL_NO_RAW
+
+/* rot support (ROT is the image format for the game Homeworld 2.) */
+#undef IL_NO_ROT
+
+/* sgi support (SGI is the native raster graphics file format for Silicon
+   Graphics workstations) */
+#undef IL_NO_SGI
+
+/* sun support (SUN is the image format used on Sun's operating systems.) */
+#undef IL_NO_SUN
+
+/* texture support (TEXTURE is the format used in Medieval II: Total War
+   (similar to DDS).) */
+#undef IL_NO_TEXTURE
+
+/* tga support (TGA (aka TARGA file format) has been used mainly in games. It
+   is open and simple.) */
+#undef IL_NO_TGA
+
+/* tiff support (TIFF is a lossless format supporting greater color depths.
+   libtiff powered) */
+#undef IL_NO_TIFF
+
+/* tpl support (TPL is the format used by many GameCube and Wii games.) */
+#undef IL_NO_TPL
+
+/* utx support (UTX is Unreal and Unreal Tournament texture format) */
+#undef IL_NO_UTX
+
+/* vtf support (VTF (Valve Texture Format) is used by games based on Valve's
+   Source engine.) */
+#undef IL_NO_VTF
+
+/* wal support (WAL is the image format used for the game Quake 2.) */
+#undef IL_NO_WAL
+
+/* wbmp support (WBMP (Wireless Application Protocol Bitmap) is a monochrome
+   graphics file format optimized for mobile computing devices) */
+#undef IL_NO_WBMP
+
+/* wdp support (WDP is Microsoft's successor to JPEG, able to store many
+   different image types either lossy or losslessly, also known as HD Photo.)
+   */
+#undef IL_NO_WDP
+
+/* xpm support (XPM (X PixMap) is an ASCII-based image used in X Windows.) */
+#undef IL_NO_XPM
+
+/* Define if you have nvidia texture tools library installed */
+#undef IL_USE_DXTC_NVIDIA
+
+/* Define if you have libsquish installed */
+#undef IL_USE_DXTC_SQUISH
+
+/* Use libjpeg without modification. always enabled. */
+#undef IL_USE_JPEGLIB_UNMODIFIED
+
+/* jp2 support */
+#undef JP2_NO_
+
+/* jpeg support */
+#undef JPEG_NO_
+
+/* LCMS include without lcms/ support */
+#undef LCMS_NODIRINCLUDE
+
+/* Logging support will be compiled in. */
+#undef LOGGING_ENABLED
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
+/* Building on Mac OS X */
+#undef MAX_OS_X
+
+/* define if you have memalign memory allocation */
+#undef MEMALIGN
+
+/* define if you have mm_malloc.h header */
+#undef MM_MALLOC
+
+/* mng support */
+#undef MNG_NO_
+
+/* Should be CFLAGS used to build modules */
+#undef MODULES_CFLAGS_STR
+
+/* Should be LIBS used to build modules */
+#undef MODULES_LIBS_STR
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* wmp support */
+#undef OTHERS_NO_
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* png support */
+#undef PNG_NO_
+
+/* define if you have posix_memalign memory allocation */
+#undef POSIX_MEMALIGN
+
+/* Define to necessary symbol if this constant uses a non-standard name on
+   your system. */
+#undef PTHREAD_CREATE_JOINABLE
+
+/* restric keyword available */
+#undef RESTRICT_KEYWORD
+
+/* SSE extension found */
+#undef SSE
+
+/* SSE2 extension found */
+#undef SSE2
+
+/* SSE3 extension found */
+#undef SSE3
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* What formats do we support - for the library report */
+#undef SUPPORTED_FORMATS
+
+/* tiff support */
+#undef TIFF_NO_
+
+/* define if you have valloc memory allocation */
+#undef VALLOC
+
+/* Memory must be vector aligned */
+#undef VECTORMEM
+
+/* Version number of package */
+#undef VERSION
+
+/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
+   significant byte first (like Motorola and SPARC, unlike Intel). */
+#if defined AC_APPLE_UNIVERSAL_BUILD
+# if defined __BIG_ENDIAN__
+#  define WORDS_BIGENDIAN 1
+# endif
+#else
+# ifndef WORDS_BIGENDIAN
+#  undef WORDS_BIGENDIAN
+# endif
+#endif
+
+/* Define to 1 if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING
+
+/* "Enable debug code features" */
+#undef _DEBUG

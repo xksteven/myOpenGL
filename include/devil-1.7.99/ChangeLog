@@ -1,0 +1,45 @@
+2010-03-22 Matěj Týč <bubla@users.sf.net>
+	* src-IL/src/il_utility.c: Added missing breaks to a switch statement
+
+2010-03-11  Matěj Týč <bubla@users.sf.net>
+	* include/IL/il*.h: Corrected typos that prevented compilation
+
+2010-03-02  Matěj Týč <bubla@users.sf.net>
+	* all sorts of files: Changed _IL.._BUILD_LIBRARY to
+	IL.._BUILD_LIBRARY since _ prefixed stuff is reserved for the compiler
+
+2010-02-23  Matěj Týč <bubla@users.sf.net>
+	* m4/, lib/, configure.ac: Added support for gnulib's visibility
+	module, MSVC support module and prepared for the havelib module
+	* src-IL/src/il_png.c, il_icon.c: Fixed calling of function
+	png_set_gray_1_2_4_to_8() to png_set_expand_gray_1_2_4_to_8() in order
+	to conform to the latest libpng v 1.4
+
+2010-02-19  Matěj Týč <bubla@users.sf.net>
+	* src-IL/src/il_dicom.c: Applied patch fixing issue # 2908728
+	* src-IL/src/il_png.c: Updated call of png_check_sig() to
+	png_sig_cmp() (png14 compatibility issue)
+	* il*_internal.h: Moved the _BUILDING_IL*_LIBRARY to a #define if
+	#defined HAVE_CONFIG_H
+	* m4/devil-definitions.m4: Added pkg-config support when checking for
+	libpng
+	* src-ILUT/src/*.c: Removed DDS (DXTC)-related code since it used
+	internal IL functions.
+	* SVN repo: Added some forgotten files to the SVN repo
+
+2010-01-09  Matěj Týč <bubla@users.sf.net>
+	* include/IL/{il,ilu,ilut}.h: Slightly changed syntax of the ILAPI
+	macro
+	* m4/devil-{definitions,api-checks}.m4: Greatly improved tests for
+	libraries in terms of reliability
+	* m4/devil-*.m4: Changed shell scripts code so that DevIL can now
+	build on OpenBSD (generally on non-bash shells)
+	* build-aux/gen_ptr_defines.sh, autogen.sh: Moved code that is
+	supposed to generate ptr_defines.h to the autoreconf section of the
+	build process
+	* src-IL/src/il_stack.c: Put a gettext funcion into conditional code
+	* src-IL/src/il_internal.c: Added some logging, substituted generic
+	types with DevIL typedefs
+	* src-ILUT/src/... : Corrected some old errors coming from earlier
+	refactoring
+
