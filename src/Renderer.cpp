@@ -151,17 +151,18 @@ void Renderer::CreateVertexBuffer()
     // Accept fragment if it closer to the camera than the former one
     // glDepthFunc(GL_LESS); 
 
-    unsigned int image_ID;
-    const char* file_name = "earthmap1k.png";
+    // unsigned int image_ID;
+    // const char* file_name = "earthmap1k.png";
+    const char* file_name = "uvtemplate.bmp";
+    // Used by devil
+    // ilInit();
+    // iluInit();
+    // ilutInit();
+    // ilutRenderer(ILUT_OPENGL);
 
-    ilInit();
-    iluInit();
-    ilutInit();
-
-    ilutRenderer(ILUT_OPENGL);
 
     // this->image_ID[0] = ilutGLLoadImage((char*)file_name);
-    this->image_ID[0] = loadImage(file_name);
+    this->image_ID[0] = loadImage((char*)file_name);
     printf("image loaded? %d\n", this->image_ID[0]);
 
     // An array of 3 vectors which represents 3 vertices
@@ -208,7 +209,8 @@ void Renderer::CreateVertexBuffer()
     std::vector<glm::vec3> vertices;
     std::vector<glm::vec2> uvs;
     std::vector<glm::vec3> normals; // Won't be used at the moment.
-    bool res = loadOBJ("earth.obj", vertices, uvs, normals);
+    // bool res = loadOBJ("earth.obj", vertices, uvs, normals);
+    bool res = loadOBJ("cube.obj", vertices, uvs, normals);
     //How loading vertex buffer would change
     glGenBuffers(1, this->VBO);
     glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));

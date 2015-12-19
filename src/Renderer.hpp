@@ -16,10 +16,10 @@
 #include <stdlib.h>
 #include <vector>
 
-#define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
-#include <IL/il.h>
-#include <IL/ilu.h>
-#include <IL/ilut.h>
+// #define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
+// #include <IL/il.h>
+// #include <IL/ilu.h>
+// #include <IL/ilut.h>
 
 class Renderer 
 {
@@ -35,7 +35,7 @@ class Renderer
     	GLuint  modelViewMatID, colorID, projMatID,textureID;
 	    GLuint programID;
 
-		ILuint image_ID[1]; 				// Create a ILuint to hold our image ID
+		GLuint image_ID[1]; 			
 
 		GLuint* VertexArrayID;
 		GLuint* VBO;
