@@ -16,7 +16,7 @@ run make -DEBUG=1 for debugging mode
 
 To install run
 
-make includes      <- This only needs to be run once time
+make includes      <- This only needs to be run once
 
 make
 
