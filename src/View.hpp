@@ -38,24 +38,6 @@ class View {
 
 	    Renderer* renderer;
 
-	    //All of this will be moved into the renderer class *********
- 
-    	// GLuint  modelViewMatID, colorID, projMatID,textureID;
-	    // GLuint programID;
-	    // glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
-
-	    //End of All of this will be moved into the renderer class *********
-
-
-
-	  //! \brief bind the framebuffer back to the screen. 
-	   // void BindFrameBuffer(); 
-
-	  //! \brief initializes the depth buffer for the view state
-	    // void InitDepthBuffer(); 
-
-	  //! \brief initialize the light's model-view, projection matrices and the shadow matrixx for the view state.
-	    // void InitLightMatrices(); 
 
 	  /*! \brief initialize the renderers by loading and compiling their shaders.
 	   *  Note that this function needs to be called after the current
@@ -72,9 +54,6 @@ class View {
 	  /*! \brief render the state of the scene
 	   */
 	    void Render ();
-
-	    //to be deleted soon and moved to renderer
-	    // void CreateVertexBuffer();
 
 };
 
