@@ -13,20 +13,20 @@ endif
 
 INCLUDE = -I/usr/local/include 
 ifdef devil
-INCLUDE += -I$(CURR_DIR)/include/devil-1.7.99/build/include \
+	INCLUDE += -I$(CURR_DIR)/include/devil-1.7.99/build/include \
 		-I$(CURR_DIR)/include/devil-1.7.99/include \
 		-I$(CURR_DIR)/include/devil-1.7.99/build/include/IL 
 else
-INCLUDE += -I$(CURR_DIR)/include/SimpleOpenGLImageLibrary/src
+	INCLUDE += -I$(CURR_DIR)/include/SimpleOpenGLImageLibrary/src
 endif
 
 LDFLAGS = -L/usr/local/lib 
 
 ifdef devil
-LDFLAGS += -L$(CURR_DIR)/include/devil-1.7.99/build/lib \
-	-L$(CURR_DIR)/include/devil-1.7.99/lib 
+	LDFLAGS += -L$(CURR_DIR)/include/devil-1.7.99/build/lib \
+		-L$(CURR_DIR)/include/devil-1.7.99/lib 
 else 
-LDFLAGS += -L$(CURR_DIR)/include/SimpleOpenGLImageLibrary/lib
+	LDFLAGS += -L$(CURR_DIR)/include/SimpleOpenGLImageLibrary/lib
 endif
 
 #Use either glut or glfw currently built with glfw
@@ -66,12 +66,29 @@ devil:
 	make install ; \
 	cd ../.. ; 
 
-soil:
-	cd ./include/SimpleOpenGLImageLibrary/projects/makefile ; \
+includes:
+	cd ./include/SimpleOpenGLImageLibrary/ ; \
+	mkdir -p lib ; \
+	cd ./projects/makefile ; \
 	mkdir -p obj ; \
 	make ; \
 	sudo make install ; \
 	cd ../../../../ 
+
+soil:
+	cd ./include/SimpleOpenGLImageLibrary/ ; \
+	mkdir -p lib ; \
+	cd ./projects/makefile ; \
+	mkdir -p obj ; \
+	make ; \
+	sudo make install ; \
+	cd ../../../../ 
+
+cleanall:
+	cd ./include/SimpleOpenGLImageLibrary/projects/makefile ; \
+	make clean ; \
+	cd ../../../../ ; \
+	rm gl
 
 clean:
 	rm gl
