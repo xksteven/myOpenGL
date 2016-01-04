@@ -275,6 +275,9 @@ void Key (GLFWwindow *window, int key, int scancode, int action, int mods)
                     #endif
                 }
             break;
+            case GLFW_KEY_T:
+                view->renderer->renderTerrain = !(view->renderer->renderTerrain);
+            break;
 
             default: // ignore all other keys
                 return;

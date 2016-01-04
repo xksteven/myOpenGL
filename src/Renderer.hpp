@@ -8,13 +8,16 @@
 #include <glm/glm.hpp> //matrix and vec library
 #include <glm/gtx/transform.hpp> // after <glm/glm.hpp>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+
 
 #include "Shader.hpp"
 #include "texture.hpp"
 #include "objloader.hpp"
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
+
+#include "heightmap.h"
 
 // Used by devil currently not in use
 // #define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
@@ -34,7 +37,9 @@ class Renderer
 		void renderScene();
 
     	GLuint  modelViewMatID, colorID, projMatID, textureID, lightID;
-    	// bool inUse;
+    	GLuint terrHeight, maxTextU, maxTextV, heightMapScale;
+
+    	bool renderTerrain = true;
 	    GLuint programID;
 
 		GLuint image_ID[1]; 			
@@ -46,8 +51,9 @@ class Renderer
 		GLuint* normalVBO;
 		int numVerts;
 
-	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);
+	    glm::vec4 color = glm::vec4(0.4,0.4,0.4,1.0);
 
+		CMultiLayeredHeightmap* htmap;
 
 };
 

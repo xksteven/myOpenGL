@@ -8,7 +8,7 @@
 
 // #define FOVY        65.0f
 #define NEAR_Z  0.1f 
-#define FAR_Z   100.0f
+#define FAR_Z   250.0f
 
 #define FOVY        45.0f
 
@@ -40,7 +40,8 @@ View::View (GLFWwindow *window, int windowWidth, int windowHeight)
 void View::InitRenderers ()
 {
     // this->renderer = new Renderer("./shaders/TextureShader.vsh", "./shaders/TextureShader.fsh", NULL );
-    this->renderer = new Renderer("./shaders/SimpleLighting.vsh", "./shaders/SimpleLighting.fsh", NULL );
+    // this->renderer = new Renderer("./shaders/SimpleLighting.vsh", "./shaders/SimpleLighting.fsh", NULL );
+    this->renderer = new Renderer("./shaders/terrain.vsh", "./shaders/terrain.fsh", NULL );
     this->renderer->createObject();
 }
 

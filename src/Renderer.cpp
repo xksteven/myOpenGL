@@ -142,6 +142,12 @@ Renderer::Renderer (const char* vertShader, const char* fragShader, const char* 
 
     // Get a handle for our "light" uniform
     this->lightID = glGetUniformLocation(programID, "lightPosition_worldspace");
+
+    this->terrHeight = glGetUniformLocation(programID, "fRenderHeight");
+    this->maxTextU = glGetUniformLocation(programID, "fMaxTextureU");
+    this->maxTextV = glGetUniformLocation(programID, "fMaxTextureV");
+        
+    this->heightMapScale = glGetUniformLocation(programID, "HeightmapScaleMatrix");
     // if (this->lightID == -1)
     // {
     //     this->inUse = false;
@@ -159,8 +165,9 @@ void Renderer::createObject()
     // glDepthFunc(GL_LESS); 
 
     // unsigned int image_ID;
-    const char* file_name = "earthmap1k.png";
-    // const char* file_name = "uvtemplate.bmp";
+    // const char* file_name = "./data/earthmap1k.png";
+    // const char* file_name = "./data/uvtemplate.bmp";
+    const char* file_name = "./data/virus-cells-texture-Stock-Photo.png";
 
     // Used by devil currently not in use
     // ilInit();
@@ -208,8 +215,8 @@ void Renderer::createObject()
     std::vector<glm::vec3> vertices;
     std::vector<glm::vec2> uvs;
     std::vector<glm::vec3> normals; 
-    bool res = loadOBJ("earth.obj", vertices, uvs, normals);
-    // bool res = loadOBJ("cube.obj", vertices, uvs, normals);
+    bool res = loadOBJ("./data/earth.obj", vertices, uvs, normals);
+    // bool res = loadOBJ("./data/cube.obj", vertices, uvs, normals);
     //How loading vertex buffer would change
     glGenBuffers(1, this->VBO);
     glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));
@@ -237,6 +244,11 @@ void Renderer::createObject()
     glBindVertexArray (0);
     glBindBuffer (GL_ARRAY_BUFFER, 0);
 
+    this->htmap = new CMultiLayeredHeightmap();
+    this->htmap->LoadHeightMapFromImage("./data/Cells.png");
+    this->htmap->SetRenderSize(1.0f,5.0f);
+    printf("%f %f %f\n", this->htmap->vRenderScale[0],this->htmap->vRenderScale[1],this->htmap->vRenderScale[2]);
+
 }
 
 void Renderer::setMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat)
@@ -253,57 +265,81 @@ void Renderer::renderScene()
 
 
     // Clear the screen
-    // glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
- 
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 
     // Use our shader
     glUseProgram(this->programID);
 
-    glm::vec3 lightPos = glm::vec3(4,4,4);
-    glUniform3f(this->lightID, lightPos.x, lightPos.y, lightPos.z);
+    if (this->lightID != -1)
+    {
+        glm::vec3 lightPos = glm::vec3(4,4,4);
+        glUniform3f(this->lightID, lightPos.x, lightPos.y, lightPos.z);
+    }
 
-    glBindVertexArray(*(this->VertexArrayID));
+    if (renderTerrain)
+    {
 
-    // Vertices
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
- 
-    // // Colors
-    // glEnableVertexAttribArray(1);
-    // glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+        // Now we're ready to render - we are drawing set of triangle strips using one call, but we g otta enable primitive restart
+        glBindVertexArray(this->htmap->uiVAO);
+        glEnable(GL_PRIMITIVE_RESTART);
+        int iRows = this->htmap->GetNumHeightmapRows();
+        int iCols = this->htmap->GetNumHeightmapCols();
+        glPrimitiveRestartIndex(iRows*iCols);
+    
+        glUniform1f(this->terrHeight, this->htmap->vRenderScale.y);
+        glUniform1f(this->maxTextU, float(iCols)*0.1f);
+        glUniform1f(this->maxTextV, float(iRows)*0.1f);
+        glm::mat4 myMat = glm::scale(glm::mat4(1.0), glm::vec3(this->htmap->vRenderScale));
+        glUniformMatrix4fv(this->heightMapScale, 1, GL_FALSE, &glm::scale(glm::mat4(1.0), glm::vec3(this->htmap->vRenderScale))[0][0]);
 
-    // 2nd attribute buffer : UVs
-    glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, *(this->textureVBO));
-    glVertexAttribPointer(
-        1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
-        2,                                // size : U+V => 2
-        GL_FLOAT,                         // type
-        GL_FALSE,                         // normalized?
-        0,                                // stride
-        (void*)0                          // array buffer offset
-    );
+        int iNumIndices = (iRows-1)*iCols*2 + iRows-1;
+        glDrawElements(GL_TRIANGLE_STRIP, iNumIndices, GL_UNSIGNED_INT, 0);
+    }
+    else
+    {
+        glBindVertexArray(*(this->VertexArrayID));
 
-    // 3rd attribute buffer : normals
-    glEnableVertexAttribArray(2);
-    glBindBuffer(GL_ARRAY_BUFFER, *(this->normalVBO));
-    glVertexAttribPointer(
-        2,                                // attribute
-        3,                                // size
-        GL_FLOAT,                         // type
-        GL_FALSE,                         // normalized?
-        0,                                // stride
-        (void*)0                          // array buffer offset
-    );
+        // Vertices
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+     
+        // // Colors
+        // glEnableVertexAttribArray(1);
+        // glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+        // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-    // glDrawArrays(GL_POINTS, 0, 1);
-    // To draw only really need to rebind VAO and relevant VBO's again
-    // glDrawArrays(GL_TRIANGLES, 0, 12*3);
-    glDrawArrays(GL_TRIANGLES, 0, this->numVerts);
+        // 2nd attribute buffer : UVs
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, *(this->textureVBO));
+        glVertexAttribPointer(
+            1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
+            2,                                // size : U+V => 2
+            GL_FLOAT,                         // type
+            GL_FALSE,                         // normalized?
+            0,                                // stride
+            (void*)0                          // array buffer offset
+        );
 
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+        // 3rd attribute buffer : normals
+        glEnableVertexAttribArray(2);
+        glBindBuffer(GL_ARRAY_BUFFER, *(this->normalVBO));
+        glVertexAttribPointer(
+            2,                                // attribute
+            3,                                // size
+            GL_FLOAT,                         // type
+            GL_FALSE,                         // normalized?
+            0,                                // stride
+            (void*)0                          // array buffer offset
+        );
+
+        // glDrawArrays(GL_POINTS, 0, 1);
+        // To draw only really need to rebind VAO and relevant VBO's again
+        // glDrawArrays(GL_TRIANGLES, 0, 12*3);
+        glDrawArrays(GL_TRIANGLES, 0, this->numVerts);
+
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+    }
+
 }
