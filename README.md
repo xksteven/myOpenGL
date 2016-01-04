@@ -17,7 +17,7 @@ run make -e DEBUG=1 for debugging mode
 
 To install run:
 
-make soil      <- This only needs to be run once
+make includes      <- This only needs to be run once
 
 make
 
