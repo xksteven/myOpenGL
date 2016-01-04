@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <vector>
 
+// Used by devil currently not in use
 // #define ILUT_USE_OPENGL	// This MUST be defined before calling the DevIL headers or we don't get OpenGL functionality
 // #include <IL/il.h>
 // #include <IL/ilu.h>
@@ -28,11 +29,12 @@ class Renderer
 
 		Renderer(const char* vertShader, const char* fragShader, const char* geoShader);
 
-		void CreateVertexBuffer();
-		void SetMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat);
-		void RenderScene();
+		void createObject();
+		void setMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat);
+		void renderScene();
 
-    	GLuint  modelViewMatID, colorID, projMatID,textureID;
+    	GLuint  modelViewMatID, colorID, projMatID, textureID, lightID;
+    	// bool inUse;
 	    GLuint programID;
 
 		GLuint image_ID[1]; 			
@@ -41,6 +43,7 @@ class Renderer
 		GLuint* VBO;
 		GLuint* colorVBO;
 		GLuint* textureVBO;
+		GLuint* normalVBO;
 		int numVerts;
 
 	    glm::vec4 color = glm::vec4(1.0,0.0,0.0,1.0);

@@ -35,9 +35,9 @@ int main(int argc, char** argv)
     GLFWwindow* window;
 
     // Open a window and create its OpenGL context
-    window = glfwCreateWindow( 1024, 768, "Tutorial 01", NULL, NULL);
+    window = glfwCreateWindow( 1024, 768, "Testing OpenGL", NULL, NULL);
     if( window == NULL ){
-        fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
+        fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible.\n" );
         glfwTerminate();
         return -1;
     }
@@ -48,11 +48,6 @@ int main(int argc, char** argv)
     //not caused seg fault so I might be able to keep view in
     // callback class
     // View *view = SetupView(window);
-
-    // GLenum  err;
-    // while ((err = glGetError()) != GL_NO_ERROR) {
-    //     std::cerr << "OpenGL1 error: " << err << std::endl;
-    // }
 
     // Initialize GLEW
     glewExperimental = GL_TRUE; // Needed for core profile
@@ -71,15 +66,16 @@ int main(int argc, char** argv)
     // Ensure we can capture the escape key being pressed below
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-
+    //User instructions
+    printf("------------------------------------------------------\n");
+    printf("User instructions:\n");
+    printf("Press Q or ESC to quit.\n");
+    printf("Controls are mouse click and W,A,S,D or arrow keys.\n");
+    printf("------------------------------------------------------\n");
 
     // The ordering of when create shaders is called is important
     // Must be called after glewInit()
     SetupView(window);
-
-
-    // // Create and compile our GLSL program from the shaders
-    // GLuint programID = LoadShaders( "SimpleVertexShader.vsh", "SimpleFragmentShader.fsh", NULL );
 
 
 

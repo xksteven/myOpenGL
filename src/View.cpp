@@ -39,8 +39,9 @@ View::View (GLFWwindow *window, int windowWidth, int windowHeight)
 
 void View::InitRenderers ()
 {
-    this->renderer = new Renderer("./shaders/TextureShader.vsh", "./shaders/TextureShader.fsh", NULL );
-    this->renderer->CreateVertexBuffer();
+    // this->renderer = new Renderer("./shaders/TextureShader.vsh", "./shaders/TextureShader.fsh", NULL );
+    this->renderer = new Renderer("./shaders/SimpleLighting.vsh", "./shaders/SimpleLighting.fsh", NULL );
+    this->renderer->createObject();
 }
 
 
@@ -68,6 +69,6 @@ void View::InitModelViewMatrix ()
 //All of this will be moved into a renderer class ********
 void View::Render ()
 {
-    this->renderer->SetMatrices(this->modelViewMat,this->projectionMat);
-    this->renderer->RenderScene();
+    this->renderer->setMatrices(this->modelViewMat,this->projectionMat);
+    this->renderer->renderScene();
 }

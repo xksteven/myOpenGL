@@ -140,10 +140,17 @@ Renderer::Renderer (const char* vertShader, const char* fragShader, const char* 
     // Get a handle for our "texture" uniform
     this->textureID = glGetUniformLocation(programID, "myTextureSampler");
 
+    // Get a handle for our "light" uniform
+    this->lightID = glGetUniformLocation(programID, "lightPosition_worldspace");
+    // if (this->lightID == -1)
+    // {
+    //     this->inUse = false;
+    // }
+    // printf("textID = %d lightID = %d\n",textureID,lightID );
 }
 
 //All of this will be moved into a mesh class ********
-void Renderer::CreateVertexBuffer()
+void Renderer::createObject()
 {
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
     // Enable depth test
@@ -152,16 +159,17 @@ void Renderer::CreateVertexBuffer()
     // glDepthFunc(GL_LESS); 
 
     // unsigned int image_ID;
-    // const char* file_name = "earthmap1k.png";
-    const char* file_name = "uvtemplate.bmp";
-    // Used by devil
+    const char* file_name = "earthmap1k.png";
+    // const char* file_name = "uvtemplate.bmp";
+
+    // Used by devil currently not in use
     // ilInit();
     // iluInit();
     // ilutInit();
     // ilutRenderer(ILUT_OPENGL);
-
-
     // this->image_ID[0] = ilutGLLoadImage((char*)file_name);
+
+
     this->image_ID[0] = loadImage((char*)file_name);
     printf("image loaded? %d\n", this->image_ID[0]);
 
@@ -171,21 +179,12 @@ void Renderer::CreateVertexBuffer()
     this->VBO 			= new GLuint[1];
 	this->colorVBO 		= new GLuint[1];
 	this->textureVBO 	= new GLuint[1];
+    this->normalVBO     = new GLuint[1];
 
     glGenVertexArrays(1, this->VertexArrayID);
     glBindVertexArray(*(this->VertexArrayID));
 
-    // glm::vec3 g_vertex_buffer_data[] = {
-    //     glm::vec3(-1.0f, -1.0f, 0.0f),
-    //     glm::vec3(1.0f, -1.0f, 0.0f),
-    //     glm::vec3(0.0f,  1.0f, 0.0f),
-    // };
 
-    // glm::vec3 g_vertex_buffer_data[1]; 
-    // g_vertex_buffer_data[0] = glm::vec3(-1.0f, -1.0f, 0.0f);
-
-    // Load the texture using any two methods
-    // GLuint Texture = loadBMP_custom("uvtemplate.bmp");
     GLuint Texture = this->image_ID[0];
     
     // Get a handle for our "myTextureSampler" uniform
@@ -208,16 +207,16 @@ void Renderer::CreateVertexBuffer()
     // Read our .obj file
     std::vector<glm::vec3> vertices;
     std::vector<glm::vec2> uvs;
-    std::vector<glm::vec3> normals; // Won't be used at the moment.
-    // bool res = loadOBJ("earth.obj", vertices, uvs, normals);
-    bool res = loadOBJ("cube.obj", vertices, uvs, normals);
+    std::vector<glm::vec3> normals; 
+    bool res = loadOBJ("earth.obj", vertices, uvs, normals);
+    // bool res = loadOBJ("cube.obj", vertices, uvs, normals);
     //How loading vertex buffer would change
     glGenBuffers(1, this->VBO);
     glBindBuffer(GL_ARRAY_BUFFER, *(this->VBO));
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
     this->numVerts = vertices.size();
 
-    GLuint uvbuffer;
+    // GLuint uvbuffer;
     glGenBuffers(1, this->textureVBO);
     glBindBuffer(GL_ARRAY_BUFFER, *(this->textureVBO));
     glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
@@ -229,13 +228,18 @@ void Renderer::CreateVertexBuffer()
     // Set our "myTextureSampler" sampler to user Texture Unit 0
     glUniform1i(TextureID, 0);
 
+    glGenBuffers(1, this->normalVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, *(this->normalVBO));
+    glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
+
+
     //If you unbind VAO rebind it before you describe the VBO's
     glBindVertexArray (0);
     glBindBuffer (GL_ARRAY_BUFFER, 0);
 
 }
 
-void Renderer::SetMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat)
+void Renderer::setMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat)
 {
 
     glUniformMatrix4fv(this->modelViewMatID, 1, GL_FALSE, &modelViewMat[0][0]);
@@ -244,7 +248,7 @@ void Renderer::SetMatrices(glm::mat4 modelViewMat, glm::mat4 projectionMat)
 
 }
 
-void Renderer::RenderScene()
+void Renderer::renderScene()
 {
 
 
@@ -256,6 +260,8 @@ void Renderer::RenderScene()
     // Use our shader
     glUseProgram(this->programID);
 
+    glm::vec3 lightPos = glm::vec3(4,4,4);
+    glUniform3f(this->lightID, lightPos.x, lightPos.y, lightPos.z);
 
     glBindVertexArray(*(this->VertexArrayID));
 
@@ -275,6 +281,18 @@ void Renderer::RenderScene()
     glVertexAttribPointer(
         1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
         2,                                // size : U+V => 2
+        GL_FLOAT,                         // type
+        GL_FALSE,                         // normalized?
+        0,                                // stride
+        (void*)0                          // array buffer offset
+    );
+
+    // 3rd attribute buffer : normals
+    glEnableVertexAttribArray(2);
+    glBindBuffer(GL_ARRAY_BUFFER, *(this->normalVBO));
+    glVertexAttribPointer(
+        2,                                // attribute
+        3,                                // size
         GL_FLOAT,                         // type
         GL_FALSE,                         // normalized?
         0,                                // stride
