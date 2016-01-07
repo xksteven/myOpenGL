@@ -245,8 +245,8 @@ void Renderer::createObject()
     glBindBuffer (GL_ARRAY_BUFFER, 0);
 
     this->htmap = new CMultiLayeredHeightmap();
-    this->htmap->LoadHeightMapFromImage("./data/Cells.png");
-    this->htmap->SetRenderSize(1.0f,5.0f);
+    this->htmap->LoadHeightMapFromImage("./data/testImage.png");
+    this->htmap->SetRenderSize(0.5f,5.0f);
     printf("%f %f %f\n", this->htmap->vRenderScale[0],this->htmap->vRenderScale[1],this->htmap->vRenderScale[2]);
 
 }

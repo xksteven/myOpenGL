@@ -55,8 +55,8 @@ bool CMultiLayeredHeightmap::LoadHeightMapFromImage(string sImagePath)
 	);
 
 	unsigned char* bDataPointer = ht_map; // Retrieve the image data
-	iRows = width;
-	iCols = height;
+	iRows = height;
+	iCols = width;
 
 	// We also require our image to be either 24-bit (classic RGB) or 8-bit (luminance)
 	if(bDataPointer == NULL || iRows == 0 || iCols == 0) //|| (FreeImage_GetBPP(dib) != 24 && FreeImage_GetBPP(dib) != 8))
@@ -64,7 +64,7 @@ bool CMultiLayeredHeightmap::LoadHeightMapFromImage(string sImagePath)
 
 	// How much to increase data pointer to get to next pixel data
 
-	unsigned int ptr_inc =  1;
+	unsigned int ptr_inc =  1; // depends on RGB or greyscale etc.
 	// Length of one row in data
 	unsigned int row_step = ptr_inc*iCols;
 
